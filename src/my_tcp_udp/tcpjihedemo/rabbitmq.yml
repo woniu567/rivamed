@@ -1,0 +1,20 @@
+
+
+redis:
+  database: 0
+  host: localhost
+  password:
+  port: 6379
+  timeout: 0
+rabbitmq:
+# host: 10.160.12.106
+  host: 192.168.10.231
+  virtual-host: /
+  port: 5672
+# username: rivamed
+# password: sugon001
+  username: guest
+  password: guest
+  listener:
+    prefetch: 1
+    AcknowledgeMode: MANUAL
