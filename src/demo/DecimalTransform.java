@@ -42,4 +42,8 @@ public class DecimalTransform {
         System.out.println(ii2);
     }
 
+    public static void test(){
+        int aa = 20;
+
+    }
 }
