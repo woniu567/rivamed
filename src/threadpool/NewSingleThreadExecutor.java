@@ -7,25 +7,19 @@ import java.util.concurrent.Executors;
 public class NewSingleThreadExecutor {
 
     public static void main(String[] args) {
-
-
         for (int i = 0; i < 10; i++) {
             final int index = i;
             ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
             singleThreadExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
-
                     try {
                         Thread.sleep(2000);
                         System.out.println(index);
-
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-
             });
         }
 

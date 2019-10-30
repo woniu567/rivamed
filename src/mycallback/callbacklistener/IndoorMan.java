@@ -32,7 +32,7 @@ public class IndoorMan {
 
 /*
 再比如，使用线程Thread时，常常会在构建线程对象时，主动获取Runnable接口的实现。
-public class Test
+public class TestCalendar
 {
     public static void main(String[] args)
     {

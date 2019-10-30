@@ -8,7 +8,8 @@ public class MapDemo {
 
     public static void main(String[] args) {
         //map1();
-        map2();
+        //map2();
+        map3();
     }
 
     public static void map1(){
@@ -34,7 +35,17 @@ public class MapDemo {
         tempMap.put("dd",1321);
         tempMap.put("ee",3761);
         for (Map.Entry<String,Integer> entry:tempMap.entrySet()){
+            System.out.println("key.." + entry.getKey() + "  value.." + entry.getValue());
+        }
+    }
 
+    public static void map3(){
+        Map<String,Integer> testMap = new HashMap();
+        testMap.put("aa",5465);
+        testMap.put("bb",5479);
+        testMap.put("cc",5979);
+        testMap.put("aa",3489);
+        for (Map.Entry<String,Integer> entry:testMap.entrySet()){
             System.out.println("key.." + entry.getKey() + "  value.." + entry.getValue());
         }
     }

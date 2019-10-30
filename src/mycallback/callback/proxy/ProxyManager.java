@@ -33,7 +33,7 @@ public class ProxyManager implements ProxyWork{
      * 开始测试代理，模拟一个场景
      *
      * */
-    /*@Test
+    /*@TestCalendar
     public void client(){
         ProxyManager proxyManager=new ProxyManager();
         proxyManager.setAgency(new ProxyRealWork());  //new ProxyRealWork 创建一个名叫小红的代理者
