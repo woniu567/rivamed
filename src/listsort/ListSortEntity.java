@@ -5,7 +5,6 @@ import java.util.*;
 
 public class ListSortEntity {
 
-
     public static void main(String[] args) {
         List<Human> list = new ArrayList<>();
         list.add(new Human("刘媛媛",22));
