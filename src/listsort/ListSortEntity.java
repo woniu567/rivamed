@@ -12,7 +12,7 @@ public class ListSortEntity {
         list.add(new Human("李明",24));
         list.add(new Human("刘迪",25));
         list.add(new Human("刘布",26));
-        list.add(new Human("安达",27));
+        list.add(new Human("",27));//包含空字符串
         list.add(new Human("陈晨",28));
         list.add(new Human("大刘",29));
         list.add(new Human("tom",21));
