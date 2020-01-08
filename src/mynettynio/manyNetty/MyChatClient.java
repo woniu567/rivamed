@@ -21,8 +21,8 @@ public class MyChatClient {
             bootstrap.group(eventLoopGroup).channel(NioSocketChannel.class)
                     .handler(new MyChatClientInitializer());
 
-            Channel channel = bootstrap.connect("localhost",8899).sync().channel();
-
+            Channel channel = bootstrap.connect("localhost",8599).sync().channel();
+            System.out.println(channel.remoteAddress());
             //标准输入
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 

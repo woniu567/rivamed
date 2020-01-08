@@ -7,6 +7,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.MessageToByteEncoder;
 import io.netty.handler.codec.MessageToMessageDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 
 import java.io.IOException;
 import java.util.List;
@@ -61,18 +62,21 @@ public class NettyClient {
                 });
 
                 pipeline.addLast("ClientHandler", new NettyClientHandler());
+                pipeline.addLast(new StringEncoder());
             }
         });
 
         //6.建立连接
-        ChannelFuture channelFuture = clientBootstap.connect("192.168.10.206", 8018);
+        ChannelFuture channelFuture = clientBootstap.connect("192.168.111.38", 9099);
         System.out.println("建立连接：：" + (channelFuture != null));
         try {
             //7.测试输入
             while (true) {
-                System.out.println("请输入：");
-                byte[] send = show();
-                channelFuture.channel().writeAndFlush(send);
+                System.out.println("请输入：qingshuru");
+                Thread.sleep(2000);
+                //byte[] send = show();
+                //channelFuture.channel().writeAndFlush(send);
+                channelFuture.channel().writeAndFlush("djfadjfasfdsf");
             }
 
             /*ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(1);

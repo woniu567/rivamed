@@ -1,10 +1,12 @@
 package mynettynio.manyNetty;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 
 //服务器代码
@@ -15,19 +17,28 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 2.多个客户端都上线之后，一个客户端（比如说A）给服务端发送消息，那么客户端（比如说A，B，C，包括自己本身）都会收到消息，
 对于A来说，会标志此消息是自己发送自己的，其他的客户端则会收到具体的消息。
  */
-public class MyChatServer {
+public class MyChatServer extends MyChatServerHandler{
 
     public static void main(String[] args) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup wokerGroup = new NioEventLoopGroup();
-
         try{
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup,wokerGroup).channel(NioServerSocketChannel.class)
                     .childHandler(new MyChatServerInializer());
 
-            ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
-            channelFuture.channel().closeFuture().sync();
+            ChannelFuture channelFuture = serverBootstrap.bind(8599).sync();
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            for (;;){
+                if (mapContext.containsKey(bufferedReader.readLine())){
+                    ChannelHandlerContext context = mapContext.get(bufferedReader.readLine());
+                    Channel channel = context.channel();
+                    channel.writeAndFlush("dfgaserfewrwqekghdsgfgwerwqe");
+                }
+            }
+
+            //channelFuture.channel().closeFuture().sync();
         }finally {
             bossGroup.shutdownGracefully();
             wokerGroup.shutdownGracefully();

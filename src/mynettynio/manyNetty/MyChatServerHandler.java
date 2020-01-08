@@ -7,11 +7,19 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
+import java.net.SocketAddress;
+import java.util.HashMap;
+import java.util.Map;
+
 //自定义Handler
 public class MyChatServerHandler extends SimpleChannelInboundHandler<String>{
 
     //保留所有与服务器建立连接的channel对象，这边的GlobalEventExecutor在写博客的时候解释一下，看其doc
     private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+
+    protected static Map<String, ChannelHandlerContext> mapContext = new HashMap<>();
+
+    private ChannelHandlerContext context;
 
     /**
      * 服务器端收到任何一个客户端的消息都会触发这个方法
@@ -20,22 +28,21 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String>{
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         Channel channel = ctx.channel();
-
         channelGroup.forEach(ch -> {
             if(channel !=ch){
                 ch.writeAndFlush(channel.remoteAddress() +" 发送的消息:" +msg+" \n");
             }else{
                 ch.writeAndFlush(" 【自己】"+msg +" \n");
+                this.everyChannel(msg);
             }
         });
     }
-
 
     //表示服务端与客户端连接建立
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();  //其实相当于一个connection
-
+        context = ctx;
         /**
          * 调用channelGroup的writeAndFlush其实就相当于channelGroup中的每个channel都writeAndFlush
          *
@@ -43,6 +50,10 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String>{
          */
         channelGroup.writeAndFlush(" 【服务器】 -" +channel.remoteAddress() +" 加入\n");
         channelGroup.add(channel);
+        SocketAddress remoteAddress = channel.remoteAddress();
+        String string = remoteAddress.toString();
+        String ip = string.substring(string.indexOf("/")+1,string.indexOf(":"));
+        mapContext.put(ip,context);
     }
 
     @Override
@@ -75,4 +86,11 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String>{
         ctx.close();
     }
 
+    public void everyChannel(String ip) {
+        if (mapContext.containsKey(ip)){
+            ChannelHandlerContext context = mapContext.get(ip);
+            Channel channel = context.channel();
+            channel.writeAndFlush("dfadsfdsrfewrwerqw");
+        }
+    }
 }
