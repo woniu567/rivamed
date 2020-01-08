@@ -3,7 +3,6 @@ package mynettynio.manyNetty;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-
 //客户端Handler
 public class MyChatClientHandler extends SimpleChannelInboundHandler<String>{
 

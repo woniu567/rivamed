@@ -21,6 +21,14 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String>{
 
     private ChannelHandlerContext context;
 
+    public void sendMsg(String msg){
+        if (mapContext.containsKey(msg)){
+            ChannelHandlerContext context = mapContext.get(msg);
+            Channel channel = context.channel();
+            channel.writeAndFlush("dfgaserfewrwqekghdsgfgwerwqe");
+        }
+    }
+
     /**
      * 服务器端收到任何一个客户端的消息都会触发这个方法
      * 连接的客户端向服务器端发送消息，那么其他客户端都收到此消息，自己收到【自己】+消息
@@ -33,7 +41,6 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String>{
                 ch.writeAndFlush(channel.remoteAddress() +" 发送的消息:" +msg+" \n");
             }else{
                 ch.writeAndFlush(" 【自己】"+msg +" \n");
-                this.everyChannel(msg);
             }
         });
     }
@@ -84,13 +91,5 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String>{
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
         ctx.close();
-    }
-
-    public void everyChannel(String ip) {
-        if (mapContext.containsKey(ip)){
-            ChannelHandlerContext context = mapContext.get(ip);
-            Channel channel = context.channel();
-            channel.writeAndFlush("dfadsfdsrfewrwerqw");
-        }
     }
 }

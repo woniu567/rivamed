@@ -12,7 +12,7 @@ import io.netty.util.CharsetUtil;
 
 //服务器端初始化Initializer
 public class MyChatServerInializer extends ChannelInitializer<SocketChannel>{
-
+    protected MyChatServerHandler handler;
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
@@ -21,6 +21,11 @@ public class MyChatServerInializer extends ChannelInitializer<SocketChannel>{
         pipeline.addLast(new DelimiterBasedFrameDecoder(4096, Delimiters.lineDelimiter()));
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
-        pipeline.addLast(new MyChatServerHandler());
+        handler=new MyChatServerHandler();
+        pipeline.addLast(handler);
+    }
+
+    public void sendMsg(String msg){
+        handler.sendMsg(msg);
     }
 }
