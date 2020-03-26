@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+//这个类实现了，按钮获取文本框的值，GridPane对按钮的布局
 public class TextFieldBox extends Application {
 
     public static void main(String[] args)throws Exception {
