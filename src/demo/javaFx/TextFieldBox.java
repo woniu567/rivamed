@@ -40,6 +40,7 @@ public class TextFieldBox extends Application {
         button.setText("获取文本值");
         button.setLayoutX(100);
         button.setLayoutY(10);
+        button.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
 
         final TextField name = new TextField();
         name.setPromptText("Enter your first name.");
@@ -47,6 +48,7 @@ public class TextFieldBox extends Application {
         name.getText();
         name.setLayoutX(200);
         name.setLayoutY(50);
+        name.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
 
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
