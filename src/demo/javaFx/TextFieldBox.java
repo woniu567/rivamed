@@ -48,21 +48,21 @@ public class TextFieldBox extends Application {
 
         //输入文本框1
         final TextField name = new TextField();
-        name.setPromptText("Enter your first name.");
+        name.setPromptText("请输入时间  ");
         name.setPrefColumnCount(10);
         name.getText();
         name.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
 
         //输入文本框2
         final TextField name2 = new TextField();
-        name2.setPromptText("Enter your first name.");
+        name2.setPromptText("请输入时间  ");
         name2.setPrefColumnCount(10);
         name2.getText();
         name2.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
 
         //输入文本框3
         final TextField name3 = new TextField();
-        name3.setPromptText("Enter your first name.");
+        name3.setPromptText("请输入时间  ");
         name3.setPrefColumnCount(10);
         name3.getText();
         name3.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
@@ -74,7 +74,7 @@ public class TextFieldBox extends Application {
         cb.setTooltip(tooltip);
         cb.selectedProperty().addListener(new ChangeListener<Boolean>() {
             public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
-                System.out.println(cb.isSelected());
+                System.out.print(cb.isSelected() + "   ");
                 if (cb.isSelected()==true){
                     System.out.println(name2.getText());
                 }
@@ -88,7 +88,7 @@ public class TextFieldBox extends Application {
         cb2.setTooltip(tooltip2);
         cb2.selectedProperty().addListener(new ChangeListener<Boolean>() {
             public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
-                System.out.println(cb2.isSelected());
+                System.out.print(cb2.isSelected() + "   ");
                 if (cb2.isSelected()==true){
                     System.out.println(name3.getText());
                 }
