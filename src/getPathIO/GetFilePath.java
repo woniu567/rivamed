@@ -1,16 +1,44 @@
-package javaGetPath;
+package getPathIO;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class GetFilePath {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         GetFilePath getFilePath = new GetFilePath();
         getFilePath.getPathOne();
-        System.out.println();
+        System.out.println("--------------------------------");
         getFilePath.getPathTwo();
+        System.out.println("--------------------------------");
+        getFilePath.getClassPath();
+        System.out.println("--------------------------------");
+        getFilePath.showUrl();
+
+    }
+
+    public void showUrl() throws IOException {
+        //第一种：获取类加载的根路径
+        File f = new File(this.getClass().getResource("/").getPath());
+        System.out.println(f);
+
+        //获取当前类的所在工程路径; 如果不加“/”  获取当前类的加载目录
+        File f2 = new File(this.getClass().getResource("").getPath());
+        System.out.println(f2);
+
+        //第二种：获取项目路径
+        File dir = new File("");
+        String sourceFile = dir.getCanonicalPath();
+        System.out.println(sourceFile);
+
+        //
+        URL url = this.getClass().getClassLoader().getResource("");
+        System.out.println(url);
+
+        //获取所有的类路径 包括jar包的路径
+        System.out.println(System.getProperty("java.class.path"));
     }
 
     //方式一：System.getProperty()
@@ -50,4 +78,12 @@ public class GetFilePath {
         }
     }
 
+    public void getClassPath(){
+        //类的绝对路径
+        System.out.println(Class.class.getClass().getResource("/").getPath());
+        System.out.println(this.getClass().getResource("/").getPath());
+
+        //得到工程的路径
+        System.out.println(System.getProperty("user.dir"));
+    }
 }
