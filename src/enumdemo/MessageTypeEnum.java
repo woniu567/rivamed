@@ -10,6 +10,7 @@ public enum MessageTypeEnum {
     qualityControlNotice("质控提醒"),
     damageReportNotice("损坏上报提醒");
 
+
     private String typeName;
 
     MessageTypeEnum(String typeName) {
@@ -31,9 +32,5 @@ public enum MessageTypeEnum {
             }
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        MessageTypeEnum.valueOf("1");
     }
 }
