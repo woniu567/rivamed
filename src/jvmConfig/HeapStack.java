@@ -24,17 +24,7 @@ public class HeapStack {
 
     public class Memory {
 
-        public static void main(String[] args) { // Line 1
-            int i=1; // Line 2
-            Object obj = new Object(); // Line 3
-            Memory mem = new Memory(); // Line 4
-            mem.foo(obj); // Line 5
-        } // Line 9
 
-        private void foo(Object param) { // Line 6
-            String str = param.toString(); //// Line 7
-            System.out.println(str);
-        } // Line 8
 
     }
 
@@ -81,7 +71,17 @@ public class HeapStack {
     与堆内存相比，堆栈内存的大小要小得多。由于内存分配（LIFO）的简单性，与堆内存相比，堆栈内存非常快
 
      */
-    public static void main(String[] args) {
 
-    }
+    public static void main(String[] args) { // Line 1
+        int i=1; // Line 2
+        Object obj = new Object(); // Line 3
+        HeapStack mem = new HeapStack(); // Line 4
+        mem.foo(obj); // Line 5
+    } // Line 9
+
+    public void foo(Object param) { // Line 6
+        String str = param.toString(); //// Line 7
+        System.out.println(str);
+    } // Line 8
+
 }
