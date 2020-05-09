@@ -89,6 +89,7 @@ public class EnumTest {
         for (LocatePlanEnum type : LocatePlanEnum.values()) {
             // 数据库中不存在
             if (!dbExistCodes.contains(type.name())) {
+                System.out.println(type.name());
                 System.out.println(type.getCode());
                 System.out.println(type.showNumber);
             }
