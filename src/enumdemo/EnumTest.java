@@ -1,5 +1,8 @@
 package enumdemo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class EnumTest {
 
     public static void main(String[] args) {
@@ -17,7 +20,8 @@ public class EnumTest {
         WeekDay weekDay = WeekDay.FRI;
         System.out.println(weekDay.nextDay());
 
-
+        System.out.println("---------------------------");
+        enumTest.enumMethod6();
     }
 
     public void enumMethod(){
@@ -77,5 +81,17 @@ public class EnumTest {
     public void enumMethod5(){
         MqInputConnEnum mice = MqInputConnEnum.记录仪流水;
 
+    }
+
+    public void enumMethod6(){
+
+        Set<String> dbExistCodes = new HashSet<>();
+        for (LocatePlanEnum type : LocatePlanEnum.values()) {
+            // 数据库中不存在
+            if (!dbExistCodes.contains(type.name())) {
+                System.out.println(type.getCode());
+                System.out.println(type.showNumber);
+            }
+        }
     }
 }
