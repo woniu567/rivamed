@@ -29,5 +29,57 @@ public class DateTimeFormatterTest {
         //时分秒
         //String DateNow = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         System.out.println(DateNow);
+        System.out.println("--------------------------------------------------------");
+        testStringT0LocalDate();
+        System.out.println("--------------------------------------------------------");
+        testLocalDateToString();
+    }
+
+    public static void testStringT0LocalDate(){
+
+        // String --> LocalDate
+        LocalDate localDate = LocalDate.parse("2019-12-07");
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+        System.out.println(LocalDate.parse("2019-10-09").format(pattern));
+        System.out.println(localDate.format(pattern));
+        System.out.println("-----------------------");
+        // String --> LocalTime
+        LocalTime localTime = LocalTime.parse("07:43:53");
+
+        // String -->LocalDateTime
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+        LocalDate localDatee = LocalDate.parse("2019-12-07 07:43:53",formatter);
+
+        System.out.println(localDate);
+        System.out.println(localTime);
+        System.out.println(localDatee);
+    }
+
+
+    private static void testLocalDateToString() {
+        System.out.println("------------1.localDate --> String-----------");
+        //1.localDate --> String
+        LocalDate localDate = LocalDate.now();
+        String format1 = localDate.format(DateTimeFormatter.BASIC_ISO_DATE);    //yyyyMMdd
+        String format2 = localDate.format(DateTimeFormatter.ISO_DATE);            //yyyy-MM-dd
+        System.out.println(format1);
+        System.out.println(format2);
+
+        System.out.println("------------2.LocalTime  --> String-----------");
+        //2.LocalTime  --> String
+        LocalTime localTime = LocalTime.now();
+        String format3 = localTime.format(DateTimeFormatter.ISO_TIME);            //20:19:22.42
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+        String format4 = localTime.format(formatter);
+        System.out.println(format3);
+        System.out.println(format4);
+
+        System.out.println("------------LocalDateTime  --> String-----------");
+        //3.LocalDateTime  --> String
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+        String format5 = localDateTime.format(formatter2);
+        System.out.println(format5);
+
     }
 }
