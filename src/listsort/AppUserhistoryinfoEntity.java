@@ -6,6 +6,13 @@ public class AppUserhistoryinfoEntity {
 
     private String time;
 
+    public AppUserhistoryinfoEntity(){}
+
+    public AppUserhistoryinfoEntity(String work_time,String time){
+        this.work_time = work_time;
+        this.time = time;
+    }
+
     public String getWork_time() {
         return work_time;
     }

@@ -5,8 +5,15 @@ import java.util.*;
 public class ComplexSort {
 
     public static void main(String[] args) {
-
-
+        List<AppUserhistoryinfoEntity> userHistorylst = new ArrayList<>();
+        userHistorylst.add(new AppUserhistoryinfoEntity("uoeuow","ouowieu"));
+        userHistorylst.add(new AppUserhistoryinfoEntity("adifaf","mnwenrw"));
+        userHistorylst.add(new AppUserhistoryinfoEntity("ncouwe","ldsjfoi"));
+        userHistorylst.add(new AppUserhistoryinfoEntity("zieoer","posiend"));
+        sortMyUserHistoryList(userHistorylst);
+        userHistorylst.stream().forEach(entity -> {
+            System.out.println(entity.getWork_time() + "..." + entity.getTime());
+        });
     }
 
     public static void sortMyUserHistoryList(List<AppUserhistoryinfoEntity> UserHistorylst) {
