@@ -13,18 +13,18 @@ public class DeadLock {
             while(true){
                 synchronized(DeadLock.str1){
                     System.out.println(Thread.currentThread().getName()+"锁住 str1");
-                    /*if (Thread.currentThread().getName().equals("Thread-1")){
+                    if (Thread.currentThread().getName().equals("Thread-1")){
                         str2.wait(500);
                     }else if (Thread.currentThread().getName().equals("Thread-0")){
                         str1.wait(500);
-                    }*/
+                    }
                     synchronized(DeadLock.str2){
                         System.out.println(Thread.currentThread().getName()+"锁住 str2");
-                        /*if (Thread.currentThread().getName().equals("Thread-1")){
+                        if (Thread.currentThread().getName().equals("Thread-1")){
                             str2.wait(500);
                         }else if (Thread.currentThread().getName().equals("Thread-0")){
                             str1.wait(500);
-                        }*/
+                        }
                     }
                 }
             }
@@ -38,18 +38,18 @@ public class DeadLock {
             while(true){
                 synchronized(DeadLock.str2){
                     System.out.println(Thread.currentThread().getName()+"锁住 str2");
-                    /*if (Thread.currentThread().getName().equals("Thread-1")){
+                    if (Thread.currentThread().getName().equals("Thread-1")){
                         str2.wait(500);
                     }else if (Thread.currentThread().getName().equals("Thread-0")){
                         str1.wait(500);
-                    }*/
+                    }
                     synchronized(DeadLock.str1){
                         System.out.println(Thread.currentThread().getName()+"锁住 str1");
-                        /*if (Thread.currentThread().getName().equals("Thread-1")){
+                        if (Thread.currentThread().getName().equals("Thread-1")){
                             str2.wait(500);
                         }else if (Thread.currentThread().getName().equals("Thread-0")){
                             str1.wait(500);
-                        }*/
+                        }
                     }
                 }
             }

@@ -1,7 +1,6 @@
 package listsort;
 
 import java.util.ArrayList;
-import java.util.List;
 
 //很好的去重
 public class ListDeduplication {
