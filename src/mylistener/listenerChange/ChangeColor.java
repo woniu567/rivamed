@@ -15,7 +15,7 @@ public class ChangeColor extends Applet {//Applet的默认布局为FlowLayout方
 
     public void init() {
         myColor = Color.black;
-        str = "Change Color";
+        str = "Change Font Color";
         myLabel = new Label("显示状态!");
         btn = new Button("单击变色");
         panBtn = new Panel();
@@ -61,7 +61,8 @@ public class ChangeColor extends Applet {//Applet的默认布局为FlowLayout方
 
     public void paint(Graphics g) {
         g.setColor(myColor);
-        g.setFont(new Font("华文彩云", Font.BOLD, 20));
+        //g.setFont(new Font("华文彩云", Font.BOLD, 20));
+        g.setFont(new Font("Segoe Script", Font.BOLD, 20));
         g.drawString(str, 100, 200);
     }
 }
