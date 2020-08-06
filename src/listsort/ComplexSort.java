@@ -11,9 +11,13 @@ public class ComplexSort {
         userHistorylst.add(new AppUserhistoryinfoEntity("ncouwe","ldsjfoi"));
         userHistorylst.add(new AppUserhistoryinfoEntity("zieoer","posiend"));
         sortMyUserHistoryList(userHistorylst);
-        userHistorylst.stream().forEach(entity -> {
+        /*userHistorylst.stream().forEach(entity -> {
             System.out.println(entity.getWork_time() + "..." + entity.getTime());
-        });
+        });*/
+        /*userHistorylst.forEach(entity -> {
+            System.out.println(entity.getWork_time() + "..." + entity.getTime());
+        });*/
+        userHistorylst.forEach(entity -> System.out.println(entity.getWork_time() + "..." + entity.getTime()));
     }
 
     public static void sortMyUserHistoryList(List<AppUserhistoryinfoEntity> UserHistorylst) {
@@ -25,12 +29,12 @@ public class ComplexSort {
                 // 按照服务时间排序，如果服务时间相同则以创建时间排序
                 if (a0.getWork_time() != null && a1.getWork_time() != null && a0.getTime() != null && a1.getTime() != null) {
                     if (a1.getWork_time().compareTo(a0.getWork_time()) == 0) {
-                        result = a1.getTime().compareTo(a0.getTime());
+                        result = a0.getTime().compareTo(a1.getTime());
                     } else {
-                        result = a1.getWork_time().compareTo(a0.getWork_time());
+                        result = a0.getWork_time().compareTo(a1.getWork_time());
                     }
                 } else {
-                    result = a1.getTime().compareTo(a0.getTime());
+                    result = a0.getTime().compareTo(a1.getTime());
                 }
                 return result;
             }
