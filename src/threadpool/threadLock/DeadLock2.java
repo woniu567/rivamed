@@ -10,6 +10,8 @@ package threadpool.threadLock;
 把获取锁的代码放在一个公共的方法里面，让这两个线程获取锁都是从我的公共的方法里面获取，当Thread1线程进入公共方法时，获取了A锁，
 另外Thread2又进来了，但是A锁已经被Thread1线程获取了，Thread1接着又获取锁B，Thread2线程就不能再获取不到了锁A，更别说再去获取锁B了，这样就有一定的顺序了。
 DeadLock1例子的改造如下
+
+可以看到把业务逻辑抽离出来，把获取锁的代码放在一个公共的方法里面，获得锁都必须始终遵守这个既定的顺序。
  */
 public class DeadLock2 {
 
@@ -24,15 +26,32 @@ public class DeadLock2 {
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-
+                getLock();
             }
-        });
+        },"Thread1");
 
         Thread thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
-
+                getLock();
             }
-        });
+        },"Thread2");
+        thread1.start();
+        thread2.start();
+    }
+
+    public void getLock(){
+        synchronized (lockA){
+            try {
+                System.out.println(Thread.currentThread().getName() + "获取A锁 ing！");
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName() + "需要B锁!!!");
+            synchronized (lockB){
+                System.out.println(Thread.currentThread().getName() + "B锁获取成功!");
+            }
+        }
     }
 }
