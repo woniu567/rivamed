@@ -1,0 +1,37 @@
+SELECT
+	ba.account_id,
+	ba.account_name,
+	ba.user_id,
+	bu. NAME,
+	bu.mobile_num,
+	ag.groupIds,
+	ag.groupNames
+FROM
+	t_bsp_account ba
+LEFT JOIN t_bsp_user bu ON ba.user_id = bu.user_id
+LEFT JOIN (
+	SELECT DISTINCT
+		(bag.account_id),
+		GROUP_CONCAT(bag.group_id) AS groupIds,
+		GROUP_CONCAT(bg.group_name) AS groupNames
+	FROM
+		t_bsp_account_group bag
+	LEFT JOIN t_bsp_group bg ON bag.group_id = bg.group_id
+	GROUP BY
+		bag.account_id
+) AS ag ON ba.account_id = ag.account_id
+WHERE
+	ba.account_id IN (
+		'4028efc26e3e6689016e8135977901bc',
+		'10000000000001'
+	);
+
+
+SELECT
+ba.account_id,ba.account_name,ba.user_id,bu.name,bu.mobile_num,ag.groupIds,ag.groupNames
+FROM
+t_bsp_account ba
+LEFT JOIN t_bsp_user bu ON ba.user_id = bu.user_id
+LEFT JOIN (SELECT DISTINCT(bag.account_id),GROUP_CONCAT(bag.group_id) AS groupIds,GROUP_CONCAT(bg.group_name) AS groupNames FROM t_bsp_account_group bag LEFT JOIN t_bsp_group bg ON bag.group_id = bg.group_id GROUP BY bag.account_id) AS ag ON ba.account_id = ag.account_id
+WHERE
+ba.account_id IN ('4028efc26e3e6689016e8135977901bc','10000000000001');
