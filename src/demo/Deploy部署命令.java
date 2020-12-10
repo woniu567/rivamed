@@ -54,6 +54,12 @@ defaultZone: http://192.168.111.59:8002/eureka/
 压缩war包： jar -uvf0 ciis.war
 java -jar tm.war
 
+
+arthas执行成功的命令:
+trace cn.rivamed.tm.sysmanage.dictionaryManage.dao.DictionaryDao findAll '#cost>5' -n 5
+
+
+
  */
 public class Deploy部署命令 {
 }
